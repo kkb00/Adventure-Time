@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Adventure Time</title>
+<style>
+body {
+    background: #AEE2FF; /* Soft Sky Blue */
+    color: #1A3056;      /* Deep Royal Blue */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14pt;
+    line-height: 18pt;
+    margin: 32px auto;
+    width: 600px;
+}
+h1 {
+    font-size: 24pt;
+    margin: 0 0 4px 0;
+}
+p {
+    margin: 0 0 32px 0;
+    font-size: 10pt;
+}
+div {
+    margin: 0 0 18pt 0;
+}
+</style>
+<script>
+var a = ['Tree Fort', 'Candy Kingdom', 'Ice Kingdom', 'Grass Sword', 'Nightosphere', 'Fire Kingdom', 'Slime Kingdom', 'Train', 'Enchiridion', 'Jail', 'Sword', 'Crown', 'dungeon', 'treehouse', 'Lemon Kingdom'];
+var b = ['Finn', 'Jake', 'Marceline', 'Princess Bubblegum', 'Ice King', 'BMO', 'Fern', 'Gunter', 'Lemongrab', 'Flame Princess', 'Tree Trunks', 'Prismo', 'the Lich', 'Peppermint Butler', 'Susan Strong', 'Cosmic Owl', 'Shelby', 'Betty', 'Lady Rainicorn'];
+var c = ['stretches', 'floats', 'yawns', 'glows', 'respawns', 'glitches', 'meditates', 'teleports', 'shapeshifts', 'floops', 'screams', 'levitates', 'melts', 'dances', 'slumps', 'shouts', 'reincarnates', 'wakes up'];
+var d = ['punch', 'rescue', 'slay', 'banish', 'high-five', 'prank', 'enchant', 'explore', 'smash', 'kick', 'crawl', 'rush', 'awaken', 'summon', 'hug', 'unleash', 'defeat'];
+var e = ['algebraic', 'mathematical', 'magic', 'lumps', 'rad', 'righteous', 'dystopian', 'wizard', 'unacceptable', 'party', 'deep', 'fearing', 'space', 'candy', 'magical', 'ancient', 'cursed'];
+var f = ['in the Land of Ooo', 'through the Multiverse', 'beneath the ice', 'under the tree house', 'into the Time Room', 'across the Grass Lands', 'into the Nightosphere', 'above the Ice Kingdom', 'within the Candy Tavern', 'lost in the Pillowfort', 'floating in Lumpy Space', 'deep in the Spooky Forest', 'beyond the Sea of Ice', 'trapped in the Enchiridion'];
+
+function rand_range(max) {
+    return Math.floor(Math.random()*(max+1));
+}
+function choose(array) {
+    return array[rand_range(array.length-1)];
+}
+function path() {
+    var p = rand_range(4);
+    var g = '';
+    if (p == 0) { g = choose(b) + ' ' + choose(c) + '.'; }
+    if (p == 1) { g = choose(b) + ' ' + choose(c) + ' ' + choose(f) + '.'; }
+    if (p == 2) { g = choose(d) + ' ' + choose(a) + '.'; }
+    if (p == 3) { g = choose(d) + ' ' + choose(a) + ' ' + choose(f) + '.'; }
+    return g;
+}
+function cave() {
+    var p = rand_range(2);
+    var g = '';
+    if (p == 0) { g = choose(e) + ' ' + choose(a); }
+    if (p == 1) { g = choose(e) + ' ' + choose(b); }
+    return g;
+}
+function do_poetry() {
+    var main = document.getElementById('main');
+    if (main.childNodes.length > 25) {
+        main.removeChild(main.firstChild);
+    }
+    var div = document.createElement('div');
+    if (rand_range(4) == 0) {
+        div.innerHTML = cave();
+    } else {
+        div.innerHTML = path();
+    }
+    main.appendChild(div);
+    setTimeout(do_poetry, 1200);
+}
+</script>
+</head>
+<body onload="do_poetry();">
+<h1>Adventure Time</h1>
+<p>Original by Nick Montfort</p>
+<div id="main"></div>
+</body>
+</html>
